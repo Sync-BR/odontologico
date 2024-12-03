@@ -1,0 +1,101 @@
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+select, textarea, button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    color: #333;
+}
+
+select:focus, textarea:focus, button:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Estilo das opções de input */
+select {
+    height: 44px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Botão */
+button {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo das labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 16px;
+    color: #555;
+}
+.alert {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    position: relative;
+    font-size: 16px;
+}
+
+.alert-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.alert-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Estilo responsivo para telas pequenas */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}

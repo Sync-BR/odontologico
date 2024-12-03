@@ -1,0 +1,115 @@
+body{
+    font-size: 14px; 
+    width: 100vw;
+    height: 100vh; 
+    position: relative;  
+    overflow-x: hidden;
+}
+
+header{
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 15px 25px 15px 25px;
+    border-bottom: 1px solid black;
+}
+nav{
+    text-transform: lowercase;
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+nav ul{
+    display: flex;
+    gap: 15px;
+}
+nav a{
+   color: black;
+}
+
+.logo{
+    display: flex;
+    gap: 25px;
+}
+main{
+    min-height: 90%;
+}
+
+.alert {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    position: relative;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+
+/* Estilo de sucesso */
+.alert-success {
+    background-color: #28a745;
+    color: white;
+    border-left: 5px solid #218838;
+}
+
+/* Estilo de erro */
+.alert-danger {
+    background-color: #dc3545;
+    color: white;
+    border-left: 5px solid #c82333;
+}
+
+/* Botão de fechar */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.close-btn:hover {
+    transform: scale(1.2);
+}
+
+/* Quando a mensagem for removida (por tempo) */
+.alert.hidden {
+    display: none;
+}
+
+/* Animação de desvanecimento */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+.success-danger button{
+    width: 40px;
+    height: 100%;
+    background-color: whitesmoke;
+}
+.success-danger p{
+    width: 100%;
+    text-align: center;
+}
+footer{
+    position: sticky;
+    width: 100%;
+    min-height: 3%;
+    background-color: whitesmoke;
+    border-top: 1px solid black;
+    bottom: 0;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}

@@ -1,0 +1,17 @@
+*{
+    padding: 0%;
+    margin:  0%;
+    box-sizing: border-box;
+}
+
+.logo img{
+    width:50px;
+}
+a{
+    text-decoration: none;
+    font-size: 18px;
+    
+}
+li{
+    list-style: none;
+}
