@@ -1,9 +1,9 @@
 package org.springframework.odontologico.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -21,6 +21,7 @@ public class ClientModel {
     @Column(name = "cliente_cpf", nullable = false)
     private String cpf;
     @Column(name = "cliente_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
     @Column(name = "cliente_telephone", nullable = false)
     private String telephone;
@@ -32,13 +33,12 @@ public class ClientModel {
     private int houseNumber;
     @Column(name = "cliente_residence_letter", nullable = false)
     private char residenceLetter;
-    @JsonIgnore
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HistoricalModel> historicalModel;
-
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExamModel> examsModel;;
     public ClientModel() {
     }
-
 
     @Override
     public String toString() {
@@ -52,6 +52,8 @@ public class ClientModel {
                 ", cep='" + cep + '\'' +
                 ", houseNumber=" + houseNumber +
                 ", residenceLetter=" + residenceLetter +
+                ", historicalModel=" + historicalModel +
+                ", examsModel=" + examsModel +
                 '}';
     }
 }
