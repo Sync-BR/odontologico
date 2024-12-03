@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./../src/css/reset.css">
+    <link rel="stylesheet" href="./../src/css/style.css">
+    <link rel="stylesheet" href="./../src/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <title>Inicio</title>
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <img src="../src/img/logo.png" alt="Logo">
+        <h1>Sistema odontológico</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="registrar">Clientes</a></li>
+            <li><a href="exames">Exames</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <div class="countClients">
+        <h2>Informações do sistema</h2>
+        <br>
+        <div class="inforSistema">
+            <div class="countclient">
+
+                <div class="progress-circle">
+                    <p th:text="${totalClientsCount} +'/'+10000"></p>
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                              d="M18 2.0845
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle"
+                              th:style="'stroke-dasharray:' + (${totalClientsCount} / 10000) * 10 + ', 100'"
+                              d="M18 2.0845
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                </div>
+                <br>
+                <p>Clientes registrados</p>
+            </div>
+            <div class="countexams">
+
+                <div class="progress-circle">
+                    <p th:text="${totalExamsCount} +'/'+10000"></p>
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                              d="M18 2.0845
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle"
+                              th:style="'stroke-dasharray:' + (${totalExamsCount} / 10000) * 10 + ', 100'"
+                              d="M18 2.0845
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                </div>
+                <br>
+                <p>Exames registrados</p>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="search">
+        <form action="/api/user/findByCpf" method="post" class="search-form">
+            <h3>Buscar cliente</h3>
+            <label for="cpf">CPF:</label>
+            <input type="text" name="cpf" id="cpf">
+            <button type="submit">Pesquisar</button>
+        </form>
+        <div th:if="${clientDate == null}">
+            <p th:text="${message}">Mensagem padrão caso não encontre.</p>
+        </div>
+        <div th:if="${clientDate != null}">
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Valor</th>
+                </tr>
+                </thead>
+                <tbody class="resultClient">
+                <tr>
+                    <td>Nome</td>
+                    <td th:text="${clientDate.name}">Nome do Cliente</td>
+                </tr>
+                <tr>
+                    <td>CPF</td>
+                    <td th:text="${clientDate.cpf}">CPF do Cliente</td>
+                </tr>
+                <tr>
+                    <td>Data de Nascimento</td>
+                    <td th:text="${#dates.format(clientDate.date, 'dd/MM/yyyy')}">Data</td>
+                </tr>
+                <tr>
+                    <td>Telefone</td>
+                    <td th:text="${clientDate.telephone}">Telefone</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td th:text="${clientDate.email}">Email</td>
+                </tr>
+                <tr>
+                    <td>CEP</td>
+                    <td th:text="${clientDate.cep}">CEP</td>
+                </tr>
+                <tr>
+                    <td>Número da Casa</td>
+                    <td th:text="${clientDate.houseNumber}">Número</td>
+                </tr>
+                <tr>
+                    <td>Letra da Residência</td>
+                    <td th:text="${clientDate.residenceLetter}">Letra</td>
+                </tr>
+                </tbody>
+
+
+            </table>
+            <br>
+            <h3>Exames do Cliente</h3>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Tipo de Exame</th>
+                    <th>Data do Exame</th>
+                    <th>Descrição</th>
+                    <th>Médico Responsável</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="exam : ${clientDate.examsModel}">
+                    <td th:text="${exam.exam_Type}">Tipo de Exame</td>
+                    <td th:text="${#dates.format(exam.exam_Date, 'dd/MM/yyyy')}">Data</td>
+                    <td th:text="${exam.exam_Description}">Descrição</td>
+                    <td th:text="${exam.doctor_name}">Médico</td>
+                </tr>
+                </tbody>
+            </table>
+            <br>
+            <h3>Historico do Cliente</h3>
+            <table border="1">
+                <thead>
+                <tr>
+                    <th>Nome do doctor</th>
+                    <th>Tipo do exame</th>
+                    <th>Data do exame</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="historical : ${clientDate.historicalModel}">
+                    <td th:text="${historical.doctorName}">Nome do doctor</td>
+                    <td th:text="${historical.service}">Serviço</td>
+                    <td th:text="${#dates.format(historical.date, 'dd/MM/yyyy')}">Data</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</main>
+
+<footer>
+    <p>Copyright © 2024 SYNC Technologies. All rights reserved.</p>
+</footer>
+</body>
+
+</html>

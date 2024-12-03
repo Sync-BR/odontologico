@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/reset.css">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <title>Inicio</title>
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <img src="../src/img/logo.png" alt="Logo">
+        <h1>Sistema odontológico</h1>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="registrar">Clientes</a></li>
+            <li><a href="exames">Exames</a></li>        </ul>
+    </nav>
+</header>
+<style>
+    body {
+        overflow-x: hidden;
+    }
+
+    main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+    .form-container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
+    }
+
+    form h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #4CAF50;
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-weight: 600;
+        font-size: 1rem;
+        color: #555;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #fafafa;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #4CAF50;
+        outline: none;
+    }
+
+    button.submit-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.2rem;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button.submit-btn:hover {
+        background-color: #45a049;
+    }
+    .success-message, .success-danger {
+        transition: opacity 0.5s ease-out;
+    }
+
+</style>
+<div th:if="${message}" class="alert alert-success">
+    <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+    <p th:text="${message}"></p>
+</div>
+<div th:if="${messageErro}" class="alert alert-danger">
+    <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+    <p th:text="${messageErro}"></p>
+</div>
+
+
+<main>
+    <div class="form-container">
+        <form action="/api/user/create" method="post">
+            <h2>Registrar Cliente</h2>
+
+            <div class="form-group">
+                <label for="name">Nome completo:</label>
+                <input type="text" id="name" name="name" placeholder="Digite o nome completo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" placeholder="Digite o CPF" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telephone">Telefone:</label>
+                <input type="text" id="telephone" name="telephone" placeholder="Digite o telefone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Data de nascimento:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="Digite o email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="cep">CEP:</label>
+                <input type="text" id="cep" name="cep" placeholder="Digite o CEP" required>
+            </div>
+
+            <div class="form-group">
+                <label for="houseNumber">Número da casa:</label>
+                <input type="number" id="houseNumber" name="houseNumber" placeholder="Número da casa" required>
+            </div>
+
+            <div class="form-group">
+                <label for="residenceLetter">Letra da casa:</label>
+                <input type="text" id="residenceLetter" name="residenceLetter" placeholder="Letra da casa" required>
+            </div>
+
+            <button type="submit" class="submit-btn">Cadastrar</button>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <p>Copyright © 2024 SYNC Technologies. All rights reserved.</p>
+</footer>
+</body>
+<script>
+    window.onload = function() {
+        setTimeout(function() {
+            const successMessage = document.querySelector('.success-message');
+            const errorMessage = document.querySelector('.success-danger');
+
+            if (successMessage) {
+                successMessage.style.display = 'none';
+            }
+
+            if (errorMessage) {
+                errorMessage.style.display = 'none';
+            }
+        }, 5000);  // 5000ms = 5 segundos
+    };
+</script>
+
+</html>
