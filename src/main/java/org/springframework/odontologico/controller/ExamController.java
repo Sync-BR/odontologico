@@ -14,13 +14,13 @@ public class ExamController {
 
     @PostMapping("/api/exam/register")
     public String registerExam(ExamModel exam, RedirectAttributes redirectAttributes) {
-        System.out.println(exam.toString());
         if (service.createExams(exam)) {
-            System.out.println("Sucesso!");
+            redirectAttributes.addFlashAttribute("message", "Exame cadastrado com sucesso!");
         } else {
-            System.out.println("Falha!");
+            redirectAttributes.addFlashAttribute("messageError", "Falha ao cadastrar o exame. Verifique os dados e tente novamente.");
         }
         return "redirect:/exames";
     }
+
 
 }
