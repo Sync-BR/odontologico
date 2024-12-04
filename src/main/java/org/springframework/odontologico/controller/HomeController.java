@@ -19,6 +19,7 @@ public class HomeController {
     public String home(Model model) {
         model.addAttribute("totalClientsCount", serviceClient.countClients().toString());
         model.addAttribute("totalExamsCount", serviceExam.getExams().toString());
+        model.addAttribute("totalDoctorsCount", serviceDoctor.getCountDoctores().toString());
         return "index";
     }
     @GetMapping("/registrar")
@@ -30,5 +31,9 @@ public class HomeController {
         model.addAttribute("clients", serviceClient.getAllClients());
         model.addAttribute("doctors", serviceDoctor.getAllDoctors());
         return "registerexam";
+    }
+    @GetMapping("/doctor")
+    public String registerdoctor() {
+        return "registerdoctor";
     }
 }
