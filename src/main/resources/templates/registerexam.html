@@ -26,10 +26,26 @@
             <li><a href="/">Inicio</a></li>
             <li><a href="registrar">Clientes</a></li>
             <li><a href="exames">Exames</a></li>
+            <li><a href="doctor">Doctores</a></li>
+
         </ul>
     </nav>
 </header>
+<style>
+    .close-btn{
+        width: 40px;
+        padding-right: 25px;
+    }
+</style>
 
+    <div th:if="${message}" class="alert alert-success">
+        <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+        <p th:text="${message}"></p>
+    </div>
+    <div th:if="${messageErro}" class="alert alert-danger">
+        <button class="close-btn" onclick="this.parentElement.style.display='none'">×</button>
+        <p th:text="${messageErro}"></p>
+    </div>
 <main>
     <form action="/api/exam/register" method="post">
         <h2>Adicionar exames</h2>
@@ -39,7 +55,12 @@
                     th:value="${doctor.getNome()}"
                     th:text="${doctor.getNome()}"></option>
         </select>
-
+        <select id="clients" name="client" required>
+            <option value="" disabled selected>Selecione um cliente</option>
+            <option th:each="client : ${clients}"
+                    th:value="${client.getId()}"
+                    th:text="${client.getName()}"></option>
+        </select>s
         <label for="exam_Type">Tipo de Exame:</label>
         <select id="exam_Type" name="exam_Type" required>
             <option value="" disabled selected>Selecione um tipo de exame</option>
@@ -50,14 +71,10 @@
             <option value="Extração">Extração</option>
             <option value="Prótese">Prótese</option>
         </select>
+
         <label for="exam_Description">Descrição do Exame:</label>
         <textarea id="exam_Description" name="exam_Description" rows="4" required></textarea>
-        <select id="clients" name="client" required>
-            <option value="" disabled selected>Selecione um cliente</option>
-            <option th:each="client : ${clients}"
-                    th:value="${client.getId()}"
-                    th:text="${client.getName()}"></option>
-        </select>
+
         <button type="submit">Salvar Exame</button>
 
     </form>

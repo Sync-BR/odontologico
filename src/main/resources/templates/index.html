@@ -26,6 +26,8 @@
             <li><a href="/">Inicio</a></li>
             <li><a href="registrar">Clientes</a></li>
             <li><a href="exames">Exames</a></li>
+            <li><a href="doctor">Doctores</a></li>
+
         </ul>
     </nav>
 </header>
@@ -73,6 +75,24 @@
                 </div>
                 <br>
                 <p>Exames registrados</p>
+            </div>
+            <div class="countDoctors">
+                <div class="progress-circle">
+                    <p th:text="${totalDoctorsCount} + '/10'"></p>
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                              d="M18 2.0845
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="circle"
+                              th:style="'stroke-dasharray:' + (${totalDoctorsCount} / 10) * 100 + ', 100'"
+                              d="M18 2.0845
+                     a 15.9155 15.9155 0 0 1 0 31.831
+                     a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                    </svg>
+                </div>
+                <br>
+                <p>Doctores registrados</p>
             </div>
 
         </div>

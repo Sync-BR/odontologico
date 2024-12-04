@@ -24,7 +24,9 @@
         <ul>
             <li><a href="/">Inicio</a></li>
             <li><a href="registrar">Clientes</a></li>
-            <li><a href="exames">Exames</a></li>        </ul>
+            <li><a href="exames">Exames</a></li>
+            <li><a href="doctor">Doctores</a></li>
+        </ul>
     </nav>
 </header>
 <style>
@@ -98,6 +100,7 @@
     button.submit-btn:hover {
         background-color: #45a049;
     }
+
     .success-message, .success-danger {
         transition: opacity 0.5s ease-out;
     }
@@ -168,8 +171,8 @@
 </footer>
 </body>
 <script>
-    window.onload = function() {
-        setTimeout(function() {
+    window.onload = function () {
+        setTimeout(function () {
             const successMessage = document.querySelector('.success-message');
             const errorMessage = document.querySelector('.success-danger');
 
