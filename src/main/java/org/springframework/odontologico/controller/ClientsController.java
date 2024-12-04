@@ -30,30 +30,28 @@ public class ClientsController {
 
     @PostMapping("/api/user/create")
     public String registerClients(ClientModel client, RedirectAttributes redirectAttributes) {
-        System.out.println("passei");
         ClientModel clientCopy = service.findByCpf(client.getCpf());
         if (clientCopy == null) {
             if (service.addClients(client) != null) {
-                redirectAttributes.addFlashAttribute("message", "Usuario cadastrado com sucesso!");
+                redirectAttributes.addFlashAttribute("message", "Cliente cadastrado com sucesso!!");
             } else {
-                redirectAttributes.addFlashAttribute("messageErro", "Erro desconhecido");
+                redirectAttributes.addFlashAttribute("messageErro", "Ocorreu um erro inesperado. Tente novamente.");
             }
         } else {
-            redirectAttributes.addFlashAttribute("messageErro", "Cpf já cadastrado!!");
+            redirectAttributes.addFlashAttribute("messageErro", "CPF já cadastrado. Verifique os dados e tente novamente.");
         }
         return "redirect:/registrar";
     }
 
     @PostMapping("/api/user/findByCpf")
     public String getClientByCpf( @RequestParam("cpf") String cpf, RedirectAttributes redirectAttributes) {
-        System.out.println("Log: " +cpf);
         ClientModel clientCopy = service.findByCpf(cpf);
         System.out.println("Log: " +clientCopy);
         if (clientCopy != null) {
             redirectAttributes.addFlashAttribute("clientDate", clientCopy);
         } else {
             redirectAttributes.addFlashAttribute("clientDate", null);
-            redirectAttributes.addFlashAttribute("message", "Cliente não encontrado!");        }
+            redirectAttributes.addFlashAttribute("message", "Cliente não encontrado. Verifique o CPF e tente novamente.");        }
         return "redirect:/";
     }
 
