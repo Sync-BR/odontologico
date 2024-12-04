@@ -60,7 +60,7 @@
             <option th:each="client : ${clients}"
                     th:value="${client.getId()}"
                     th:text="${client.getName()}"></option>
-        </select>s
+        </select>
         <label for="exam_Type">Tipo de Exame:</label>
         <select id="exam_Type" name="exam_Type" required>
             <option value="" disabled selected>Selecione um tipo de exame</option>
